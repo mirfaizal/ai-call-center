@@ -1,0 +1,12 @@
+{
+  "call_id": "CALL-003",
+  "transcript": "Agent: Hello, welcome to HomeConnect Internet Services. My name is Priya, how can I help you?\nCustomer: Hi, I've been experiencing very slow internet for the past two days. It's affecting my work from home.\nAgent: I apologize for the inconvenience. I'll do my best to resolve this for you. Can you describe the issue further?\nCustomer: My speeds are around 5 Mbps but I'm paying for 100 Mbps. It's barely usable.\nAgent: That's definitely not acceptable. Let me run a remote diagnostic on your connection. One moment please.\nCustomer: Okay.\nAgent: I can see there's a signal issue at your node. We've had some infrastructure work in your area. I'm going to reset your connection remotely.\nCustomer: How long will that take?\nAgent: Just about 2 minutes. Your modem will restart and you should see improved speeds.\nCustomer: It's restarting now.\nAgent: Great. While it reconnects, I also want to flag your account for a credit due to the service disruption. You'll see a credit on your next bill.\nCustomer: Oh, I didn't even ask for that. That's really kind of you.\nAgent: It's only fair. Our service should be reliable. Your connection should be back now. How are the speeds?\nCustomer: Wow, it's showing 98 Mbps now! That's much better.\nAgent: Excellent! I'm glad we could resolve that quickly. The credit will appear on your next bill. Is there anything else?\nCustomer: No, I'm very satisfied. Thank you Priya!\nAgent: My pleasure. Thank you for your patience and have a wonderful day!",
+  "metadata": {
+    "date": "2024-01-17",
+    "agent": "Priya Patel",
+    "customer": "Robert Kim",
+    "duration": "6:48",
+    "department": "Technical Support",
+    "category": "Internet Speed Issue"
+  }
+}
