@@ -1,0 +1,12 @@
+{
+  "call_id": "CALL-001",
+  "transcript": "Agent: Thank you for calling TechSupport. This is Sarah, how can I help you today?\nCustomer: Hi Sarah, I'm having trouble connecting my laptop to the VPN. It keeps timing out.\nAgent: I'm sorry to hear that. Let me help you resolve this. Can I have your employee ID?\nCustomer: Sure, it's EMP-4521.\nAgent: Thank you. I can see your account. Let me run a quick diagnostic. Can you tell me what error message you're seeing?\nCustomer: It says 'Connection timed out after 30 seconds'.\nAgent: Got it. This usually happens due to network configuration issues. Let me walk you through the fix. First, please open your VPN client and go to Settings.\nCustomer: Okay, I have it open.\nAgent: Great. Under 'Connection', change the timeout value from 30 to 60 seconds. Then try reconnecting.\nCustomer: That worked! The VPN is connected now. Thank you so much!\nAgent: Wonderful! I'm glad that resolved your issue. Is there anything else I can help you with today?\nCustomer: No, that's all. Have a great day!\nAgent: You too! Thank you for calling TechSupport. Goodbye!",
+  "metadata": {
+    "date": "2024-01-15",
+    "agent": "Sarah Johnson",
+    "customer": "Mark Davis",
+    "duration": "4:32",
+    "department": "IT Support",
+    "category": "VPN Connectivity"
+  }
+}

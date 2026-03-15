@@ -1,0 +1,21 @@
+Call ID: CALL-002
+Date: 2024-01-16
+Agent: Michael Chen
+Customer: Lisa Thompson
+Duration: 8:15
+Department: Billing
+
+Agent: Good afternoon, thank you for calling BrightBank. My name is Michael, how can I assist you?
+Customer: Hi Michael, I'm calling about a charge on my account that I don't recognize. There's a $45 charge from three days ago.
+Agent: I understand your concern, Lisa. I'll look into that right away. For security purposes, could you please verify the last four digits of your account number?
+Customer: Sure, it's 7834.
+Agent: Thank you. I can see the charge you're referring to. It appears to be from an online subscription service called "StreamPro". Does that ring a bell?
+Customer: Oh wait, I did sign up for a free trial last month. I must have forgotten to cancel it.
+Agent: That's a common situation. I can see this is your first charge from them. Would you like me to walk you through how to cancel the subscription, or would you prefer to keep it?
+Customer: I'd like to cancel it actually. I haven't been using it.
+Agent: Of course. I'll also note that since this is the first charge and you weren't aware of the renewal, I can submit a courtesy refund request. It should be processed within 3-5 business days.
+Customer: That would be wonderful, thank you so much Michael!
+Agent: You're very welcome. I've submitted the refund request. Reference number is REF-89234. Is there anything else I can help you with?
+Customer: No, that's perfect. You've been so helpful!
+Agent: I'm glad I could assist. Thank you for being a valued customer, Lisa. Have a great afternoon!
+Customer: You too, bye!
