@@ -11,6 +11,7 @@ import os
 from typing import Any
 
 from pydantic import BaseModel, Field
+from utils.validation import extract_json_from_markdown
 
 
 class QualityScores(BaseModel):
@@ -126,7 +127,7 @@ class QualityScoringAgent:
             )
 
         try:
-            data = json.loads(raw)
+            data = extract_json_from_markdown(raw)
             return QualityScores(
                 call_id=call_id,
                 empathy_score=int(data.get("empathy_score", 0)),

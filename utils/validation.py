@@ -15,6 +15,38 @@ MAX_TRANSCRIPT_LENGTH = 50_000
 MAX_AUDIO_FILE_SIZE_MB = 25
 
 
+def extract_json_from_markdown(text: str) -> dict[str, Any]:
+    """
+    Extract JSON from a markdown code block or raw JSON string.
+    
+    Handles both:
+    - Wrapped: ```json { "key": "value" } ```
+    - Raw: { "key": "value" }
+    
+    Args:
+        text: The text to parse
+        
+    Returns:
+        Parsed JSON as a dictionary
+        
+    Raises:
+        json.JSONDecodeError: If JSON cannot be parsed
+    """
+    # Remove markdown code block wrappers if present
+    stripped = text.strip()
+    if stripped.startswith("```"):
+        # Find the closing ```
+        lines = stripped.split("\n")
+        # Skip the opening line (e.g., ```json)
+        content_lines = lines[1:]
+        # Remove the closing line if it ends with ```
+        if content_lines and content_lines[-1].strip() == "```":
+            content_lines = content_lines[:-1]
+        stripped = "\n".join(content_lines).strip()
+    
+    return json.loads(stripped)
+
+
 def is_supported_audio_format(filename: str) -> bool:
     """Return True if the file extension is a supported audio format."""
     return Path(filename).suffix.lower() in SUPPORTED_AUDIO_FORMATS

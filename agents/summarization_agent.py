@@ -9,6 +9,7 @@ import os
 from typing import Any
 
 from pydantic import BaseModel, Field
+from utils.validation import extract_json_from_markdown
 
 
 class CallSummary(BaseModel):
@@ -113,7 +114,7 @@ class SummarizationAgent:
         try:
             import json
 
-            data = json.loads(result)
+            data = extract_json_from_markdown(result)
             return CallSummary(
                 call_id=call_id,
                 summary=data.get("summary", ""),
