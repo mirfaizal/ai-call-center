@@ -1,0 +1,9 @@
+Agent: Hello, thank you for calling Acme Telecom. My name is Sarah. How can I help you today?
+Customer: Hi Sarah — my internet has been dropping all morning. It's really slow and unreliable.
+Agent: I'm sorry you're experiencing that. Can I get the account number or the phone number on file?
+Customer: Sure, it's 555-0199.
+Agent: Thank you. I see intermittent outages reported in your area. I'll run a remote diagnostic and schedule a technician if needed. Can I confirm your availability tomorrow between 9am and 1pm?
+Customer: That works for me.
+Agent: Great — I've scheduled a technician visit. You'll receive a confirmation text. Is there anything else I can do for you today?
+Customer: No, that's all. Thanks.
+Agent: You're welcome. Have a great day.

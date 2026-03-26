@@ -1,0 +1,12 @@
+{
+  "call_id": "call_007",
+  "agent": "Lena",
+  "customer": "Tom R.",
+  "start_time": "2026-03-14T15:05:30Z",
+  "duration_seconds": 180,
+  "transcript": "Agent: Hi Tom, this is Lena at HealthPlus. I'm calling to follow up on your prescription refill.\nCustomer: Oh thanks, I was wondering when that would be ready.\nAgent: It was approved and should be ready for pickup today after 4pm.\nCustomer: Great, I'll stop by after work.\nAgent: Perfect — anything else I can help with?\nCustomer: No, that's all.",
+  "tags": ["prescription", "follow-up"],
+  "resolution": "ready_for_pickup",
+  "success": true,
+  "sentiment": "neutral"
+}

@@ -1,0 +1,187 @@
+<div class="dashboard-header animate-fade-in">
+  <h1>Call Center Insights Dashboard</h1>
+  <p>Monitor agent performance and customer interactions in real-time</p>
+</div>
+
+<!-- Loading state -->
+<div *ngIf="isLoading" class="card animate-fade-in" style="padding:2rem;display:flex;align-items:center;gap:0.75rem;color:var(--text-secondary);">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+  Loading dashboard data…
+</div>
+
+<ng-container *ngIf="!isLoading">
+
+<div class="metrics-grid animate-fade-in" style="animation-delay: 0.1s">
+  <div class="card metric-card">
+    <div class="metric-top">
+      <span class="metric-title">Total Calls</span>
+      <div class="metric-icon primary-light">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      </div>
+    </div>
+    <div class="metric-value">{{ totalCalls }}</div>
+    <div class="metric-trend neutral">
+      <span>Calls analyzed</span>
+    </div>
+  </div>
+
+  <div class="card metric-card">
+    <div class="metric-top">
+      <span class="metric-title">Avg QA Score</span>
+      <div class="metric-icon success-light">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+      </div>
+    </div>
+    <div class="metric-value">{{ avgQaScore }}</div>
+    <div class="metric-trend neutral">
+      <span>out of 100</span>
+    </div>
+  </div>
+
+  <div class="card metric-card">
+    <div class="metric-top">
+      <span class="metric-title">Resolution Rate</span>
+      <div class="metric-icon purple-light">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </div>
+    </div>
+    <div class="metric-value">{{ resolutionRate }}%</div>
+    <div class="metric-trend neutral">
+      <span>{{ resolvedCalls }} of {{ totalCalls }} resolved</span>
+    </div>
+  </div>
+
+  <div class="card metric-card">
+    <div class="metric-top">
+      <span class="metric-title">Unresolved</span>
+      <div class="metric-icon warning-light">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      </div>
+    </div>
+    <div class="metric-value">{{ unresolvedCalls }}</div>
+    <div class="metric-trend neutral">
+      <span>calls pending</span>
+    </div>
+  </div>
+</div>
+
+<div class="charts-grid animate-fade-in" style="animation-delay: 0.2s">
+  <div class="card chart-card">
+    <h3 class="chart-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      Calls by Category
+    </h3>
+    <div class="chart-placeholder" style="height: 250px; padding: 10px;">
+       <canvas baseChart
+               [data]="barChartData"
+               [options]="barChartOptions"
+               [type]="'bar'">
+       </canvas>
+    </div>
+  </div>
+
+  <div class="card chart-card">
+    <h3 class="chart-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      QA Score Distribution
+    </h3>
+    <div class="chart-placeholder pie-chart">
+      <div class="pie-visual" [style.background]="pieGradient"></div>
+      <div class="pie-legend">
+        <div class="legend-item" *ngIf="qaHigh > 0">
+          <span class="dot success-bg"></span> 90-100: {{ qaHigh }} ({{ qaHighPCT }}%)
+        </div>
+        <div class="legend-item" *ngIf="qaMid > 0">
+          <span class="dot primary-bg"></span> 75-89: {{ qaMid }} ({{ qaMidPCT }}%)
+        </div>
+        <div class="legend-item" *ngIf="qaLow > 0">
+          <span class="dot warning-bg"></span> 60-74: {{ qaLow }} ({{ qaLowPCT }}%)
+        </div>
+        <div class="legend-item" *ngIf="qaVLow > 0">
+          <span class="dot danger-bg"></span> &lt;60: {{ qaVLow }} ({{ qaVLowPCT }}%)
+        </div>
+        <div class="legend-item" *ngIf="totalCalls === 0" style="color:var(--text-tertiary)">No data yet</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card sentiment-section animate-fade-in" style="animation-delay: 0.3s">
+  <h3 class="chart-title">Customer Sentiment Analysis</h3>
+  <div class="sentiment-bars">
+    <div class="sentiment-row">
+      <div class="sentiment-label-group">
+        <span class="sentiment-name">Positive</span>
+        <span class="sentiment-percent">{{ sentiment.posPCT }}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill success-bg" [style.width]="sentiment.posPCT + '%'"></div></div>
+      <span class="sentiment-count">{{ sentiment.pos }} conversation{{ sentiment.pos !== 1 ? 's' : '' }}</span>
+    </div>
+
+    <div class="sentiment-row">
+      <div class="sentiment-label-group">
+        <span class="sentiment-name">Neutral</span>
+        <span class="sentiment-percent">{{ sentiment.neuPCT }}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill neutral-bg" [style.width]="sentiment.neuPCT + '%'"></div></div>
+      <span class="sentiment-count">{{ sentiment.neu }} conversation{{ sentiment.neu !== 1 ? 's' : '' }}</span>
+    </div>
+
+    <div class="sentiment-row">
+      <div class="sentiment-label-group">
+        <span class="sentiment-name">Negative</span>
+        <span class="sentiment-percent">{{ sentiment.negPCT }}%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill danger-bg" [style.width]="sentiment.negPCT + '%'"></div></div>
+      <span class="sentiment-count">{{ sentiment.neg }} conversation{{ sentiment.neg !== 1 ? 's' : '' }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="card insights-section animate-fade-in" style="animation-delay: 0.4s">
+  <h3 class="chart-title">Key Insights</h3>
+
+  <ng-container *ngIf="totalCalls === 0">
+    <p style="color:var(--text-tertiary);padding:1rem 0">No calls analyzed yet. Upload and analyze a call to see insights here.</p>
+  </ng-container>
+
+  <div class="insights-list" *ngIf="totalCalls > 0">
+    <div class="insight-item success-light-bg border-success" *ngIf="qaHigh > 0">
+      <div class="insight-icon success-color">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+      </div>
+      <div class="insight-content">
+        <strong>High Performance:</strong> {{ qaHigh }} out of {{ totalCalls }} call{{ totalCalls !== 1 ? 's' : '' }} scored 90+ QA, indicating strong agent training and customer service skills.
+      </div>
+    </div>
+
+    <div class="insight-item primary-light-bg border-primary" *ngIf="topCategory !== '—'">
+      <div class="insight-icon primary-color">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      </div>
+      <div class="insight-content">
+        <strong>Common Topic:</strong> <em>{{ topCategory }}</em> is the most frequent call category, suggesting it may benefit from additional documentation or self-service resources.
+      </div>
+    </div>
+
+    <div class="insight-item warning-light-bg border-warning" *ngIf="unresolvedCalls > 0">
+      <div class="insight-icon warning-color">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <div class="insight-content">
+        <strong>Follow-up Needed:</strong> {{ unresolvedCalls }} call{{ unresolvedCalls !== 1 ? 's' : '' }} remain{{ unresolvedCalls === 1 ? 's' : '' }} unresolved. Review these for escalation or agent follow-up.
+      </div>
+    </div>
+
+    <div class="insight-item success-light-bg border-success" *ngIf="unresolvedCalls === 0 && totalCalls > 0">
+      <div class="insight-icon success-color">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <div class="insight-content">
+        <strong>Full Resolution:</strong> All {{ totalCalls }} call{{ totalCalls !== 1 ? 's' : '' }} have been resolved — excellent job!
+      </div>
+    </div>
+  </div>
+</div>
+
+</ng-container>

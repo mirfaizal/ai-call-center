@@ -1,0 +1,9 @@
+Agent: Thank you for calling Flow Insurance, my name is Priya. How can I help you?
+Customer: Hi, I'm calling about my claim. I was told an adjuster would contact me yesterday but I haven't heard back.
+Agent: I apologize for the delay. Can I get your claim number?
+Customer: It's CLM-8820.
+Agent: Thanks. I see the adjuster was reassigned; I'll escalate and request an ETA. We should have an update within 24 hours.
+Customer: Okay, please make sure someone calls me — I've been without a vehicle and it's causing problems.
+Agent: Understood. I'll add a high-priority note and follow up with you once I have the ETA. Any other concerns?
+Customer: No, that's it. Thank you.
+Agent: You're welcome — sorry for the inconvenience.

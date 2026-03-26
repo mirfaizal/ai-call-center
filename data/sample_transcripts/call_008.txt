@@ -1,0 +1,9 @@
+Agent: Welcome to BrightEnergy support, this is Mike. How can I assist you today?
+Customer: My electric bill spiked this month. I think the meter reading must be wrong.
+Agent: I can review your usage and check for recent rate changes or estimated reads. Can I confirm your service address and account number?
+Customer: Address is 12 Oak Lane, account 778200.
+Agent: Thanks. I see a large usage spike last week — an estimated read was used. I'll request a manual read and a billing review. We'll update you within 3 business days.
+Customer: Thank you. I hope it's resolved.
+Agent: We'll do our best. Anything else I can help with?
+Customer: No, thanks.
+Agent: Have a good day.

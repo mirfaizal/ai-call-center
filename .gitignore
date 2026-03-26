@@ -1,0 +1,19 @@
+.env
+__pycache__/
+*.py[cod]
+*.pyo
+.DS_Store
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+logs/
+*.log
+
+# HF Space deployment ignores
+node_modules/
+ui/node_modules/
+.coverage
+data/media/
+.angular/
